@@ -6,7 +6,7 @@ import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, Toucha
 export interface CalculatorInterface {
     array: Array<string>,
     
-    
+  
 }
 
 
@@ -32,32 +32,39 @@ function Calculator(props: CalculatorInterface){
             setInput(prev=>prev.slice(0,prev.length-1))
         }
         else if(input==='reset'){
-            setInput('')
+            setInput('');
+            setTotal(0);
         }
         else if(input==='='){
             operand = input1.split(/[+-/*]/);
-            const operand1 = parseInt(operand[0]);
+            let operand1 = parseInt(operand[0]);
             const operand2 = parseInt(operand[1]);
             switch(operator){
                 case '+':{
-                    setTotal(operand1+operand2);
-                    //setInput(Number(total));
+                    setTotal(operand1+operand2); 
+                    setInput((operand1+operand2) +"")
                     break;
                 }
                 case '-':{
                     setTotal(operand1-operand2);
+                    setInput((operand1-operand2) +"")
+            
                     break;
                 }
                 case '/':{
                     setTotal(operand1/operand2);
+                    setInput((operand1/operand2) +"")
                     break;
                 }
                 case '*':{
                     setTotal(operand1*operand2);
+                    setInput((operand1*operand2) +"")
                     break;
                 }
+                
             }   
-           
+            
+            console.log(total);
         }
     }
     type ItemProps = {value:string};
@@ -99,22 +106,29 @@ const style = StyleSheet.create({
     textInputView :{
         borderColor: 'black',
         borderWidth: 1,
+        marginTop:40,
         width:200,
         height:20,
         alignSelf:'center'
     },
     text :{
         marginTop:20,
+        paddingBottom:25,
         width:200,
         height:20,
-        alignSelf:'center'
+        fontSize:20,
+        fontWeight:"bold",
+        alignSelf:'center',
+        backgroundColor:'black',
+        color:'white'
     },
     number :{
-        padding:50,
+        padding:40,
 
     },
     touchableOpacity:{
         backgroundColor:'#c7d7f0',
+        padding:20
         
     },
     numText:{
