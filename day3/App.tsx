@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import Productlist from './component/ProductListComponent';
 import Cart from './component/CartComponent';
 
@@ -22,7 +22,7 @@ class App extends Component{
   
   addProduct =(productId:number)=>{
     
-    this.setState((prev: {productList:Product[],cartProduct :CartProduct[],total:number})=>{
+    this.setState((prev: {productList:Product[],cartProduct :CartProduct[],total:number, clearCart:CartProduct[]})=>{
       const productAvailable = prev.cartProduct.find((p) =>p.productId=== productId);
        const productDetails = prev.productList.find((p)=>p.productId == productId);
       if(productAvailable && productAvailable.productId === productId){
@@ -43,7 +43,7 @@ class App extends Component{
   }
 
   removeProduct =(productId:number)=>{
-    this.setState((prev: {productList:Product[],cartProduct :CartProduct[],total:number})=>{
+    this.setState((prev: {productList:Product[],cartProduct :CartProduct[],total:number, clearCart:CartProduct[]})=>{
       const productAvailable = prev.cartProduct.find((p) =>p.productId=== productId);
       const productDetails = prev.productList.find((p)=>p.productId == productId);
       if(productAvailable && productAvailable.productId==productId){
@@ -62,12 +62,22 @@ class App extends Component{
       }
       
     })
-    
   }
+
+  clearCart = ()=>{
+
+      this.setState((prev: {productList:Product[],cartProduct :CartProduct[],total:number})=>{
+        prev.cartProduct = [];
+        prev.total = 0;
+        return prev;
+      })
+    }
+    
+  
 
   
 
-  state: {productList:Product[],cartProduct :CartProduct[],total:number}={productList:[],cartProduct:[],total:0};
+  state: {productList:Product[],cartProduct :CartProduct[],total:number }={productList:[],cartProduct:[],total:0};
   constructor (props:any){
     super(props);
     this.state.productList=[
@@ -95,13 +105,13 @@ class App extends Component{
     ]
   }
   render() {
-    return <ScrollView><View >
-      <Text style={{marginTop:80 , fontSize:30 , textAlign:'center',color:'red', backgroundColor:'black'}}> Shopping App</Text>
+    return <SafeAreaView><ScrollView><View >
+      <Text style={{fontSize:30 , textAlign:'center',color:'red', backgroundColor:'black'}}> Shopping App</Text>
       <Text style={{marginTop:20 , fontSize:20}}>Cart Total Amount in Parent :  {this.state.total}</Text>
       <Productlist productList={this.state.productList} addProduct={this.addProduct} removeProduct={this.removeProduct}/>
-      <Cart cart={this.state.cartProduct} addProduct={this.addProduct} removeProduct={this.removeProduct} total={this.state.total}/>
+      <Cart cart={this.state.cartProduct} addProduct={this.addProduct} removeProduct={this.removeProduct} total={this.state.total} clearCart={this.clearCart}/>
     </View>
-    </ScrollView>
+    </ScrollView></SafeAreaView>
   }
 }
 

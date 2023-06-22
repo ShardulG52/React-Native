@@ -7,7 +7,8 @@ interface cartProps{
     cart : CartProduct[],
     addProduct: Function,
     removeProduct: Function,
-    total : number
+    total : number,
+    clearCart : Function
 
 }
 
@@ -32,7 +33,10 @@ function Cart(props:cartProps){
         )
 
         }
-        <Text style={{marginBottom:80 , fontSize:20}}>Total Amount : {props.total}</Text>
+        <Text style={{ fontSize:20}}>Total Amount : {props.total}</Text>
+        <View style={{marginBottom:80 }}>
+        <Button title="Clear Cart" onPress={()=> props.clearCart()}></Button>
+        </View>
     </View>
 }
 
