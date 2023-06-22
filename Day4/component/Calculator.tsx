@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 
-export interface CalculatorInterface {
-    array: Array<string>,
-    
-  
+interface CalculatorInterface {
+    onPress : Function
 }
 
 
@@ -14,82 +12,24 @@ export interface CalculatorInterface {
 
 function Calculator(props: CalculatorInterface){
     
-    const [input1,setInput] = useState('');
-    const [total,setTotal] = useState<number>(0);
     
 
-    const [operator,setOperator] = useState('')
-    let operand = [];
-    const onPress = (input:string)=> {
-        if(input!=='back' &&  input !== 'reset' && input !== '='){
-
-            if(input!=='0' &&!parseInt(input)){
-                setOperator(input);
-            }
-            setInput(prev=>prev+input);
-        }
-        else if(input==='back'){
-            setInput(prev=>prev.slice(0,prev.length-1))
-        }
-        else if(input==='reset'){
-            setInput('');
-            setTotal(0);
-        }
-        else if(input==='='){
-            operand = input1.split(/[+-/*]/);
-            let operand1 = parseInt(operand[0]);
-            const operand2 = parseInt(operand[1]);
-            switch(operator){
-                case '+':{
-                    setTotal(operand1+operand2); 
-                    setInput((operand1+operand2) +"")
-                    break;
-                }
-                case '-':{
-                    setTotal(operand1-operand2);
-                    setInput((operand1-operand2) +"")
-            
-                    break;
-                }
-                case '/':{
-                    setTotal(operand1/operand2);
-                    setInput((operand1/operand2) +"")
-                    break;
-                }
-                case '*':{
-                    setTotal(operand1*operand2);
-                    setInput((operand1*operand2) +"")
-                    break;
-                }
-                
-            }   
-            
-            console.log(total);
-        }
-    }
-    type ItemProps = {value:string};
-    const Item = ({value}:ItemProps)=>(
-        <View style={style.number}> 
-        <TouchableOpacity style={style.touchableOpacity} onPress={()=> onPress(value)}>
-            <Text style={style.numText}>{value}</Text>
-        </TouchableOpacity>
-        </View>
-
-    );
-
+    const array = ['1','2','3','4','5','6','7','8','9','+','0','-','*','/','=','back','reset'];
     return (<ScrollView>
-        <View style={style.textInputView} >
-            <TextInput placeholder="Enter Number" onChangeText={setInput} value={input1}></TextInput>
-            
-        </View>
-        <Text>{input1}</Text>
-        <Text style={style.text}> Total : {total}</Text>
-
+        
+        
         <FlatList
-           data={props.array}
-           renderItem={({item})=><Item value={item} />}
-           
+           data={array}
            numColumns={3}
+           renderItem={({item})=>{
+            return <View style={style.number}> 
+            <TouchableOpacity style={style.touchableOpacity} onPress={()=> props.onPress(item)}>
+                <Text style={style.numText}>{item}</Text>
+            </TouchableOpacity>
+            </View>
+           }}
+           
+           
            
         />
 
