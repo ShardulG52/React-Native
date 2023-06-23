@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { FlatList,  ScrollView, StyleSheet, Text,  TouchableOpacity, View } from "react-native";
 
 
 
@@ -18,7 +18,7 @@ function Calculator(props: CalculatorInterface){
     return (<ScrollView>
         
         
-        <FlatList
+        <FlatList style={style.flatList}
            data={array}
            numColumns={3}
            renderItem={({item})=>{
@@ -29,11 +29,7 @@ function Calculator(props: CalculatorInterface){
             </View>
            }}
            
-           
-           
         />
-
-        
         </ScrollView>
     )
 }
@@ -43,36 +39,26 @@ export default Calculator;
 
 const style = StyleSheet.create({
 
-    textInputView :{
-        borderColor: 'black',
-        borderWidth: 1,
-        marginTop:40,
-        width:200,
-        height:20,
-        alignSelf:'center'
+    flatList:{
+         margin:30 , 
+         marginLeft:85
     },
-    text :{
-        marginTop:20,
-        paddingBottom:25,
-        width:200,
-        height:20,
-        fontSize:20,
-        fontWeight:"bold",
-        alignSelf:'center',
-        backgroundColor:'black',
-        color:'white'
-    },
+    
     number :{
-        padding:40,
+        padding:10,
 
     },
     touchableOpacity:{
-        backgroundColor:'#c7d7f0',
-        padding:20
+        backgroundColor:'#e6c291',
+        
+        borderWidth:10,
+        borderColor:'#e6c291',
+        borderRadius:35
         
     },
     numText:{
         fontSize:30,
+        margin:15
         
     }
 });

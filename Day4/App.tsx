@@ -1,18 +1,14 @@
 import React, { Component, useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import Calculator from './component/Calculator';
-import ProductList from './component/ProductComponent';
-import Cart from './component/CartComponent';
 
 
-//const array = ['1','2','3','4','5','6','7','8','9','+','0','-','*','/','=','back','reset'];
+
+
 function App(){
 
 
-  // addProduct = ()=>{
-
-
-  // }
+  
   const [input1,setInput] = useState('');
     const [total,setTotal] = useState<number>(0);
     
@@ -74,12 +70,11 @@ function App(){
             <TextInput placeholder="Enter Number" onChangeText={setInput} value={input1}></TextInput>
             
         </View>
-        <Text>{input1}</Text>
+        
         <Text style={style.text}> Total : {total}</Text>
         <Calculator onPress={onPress} />
 
-        {/* <ProductList productList={[]} addProduct={addProduct} removeProduct={removeProduct} />
-        <Cart/> */}
+        
       </View>
     </SafeAreaView>
    )
@@ -111,20 +106,9 @@ const style = StyleSheet.create({
       alignSelf:'center',
       backgroundColor:'black',
       color:'white'
-  },
-  number :{
-      padding:40,
-
-  },
-  touchableOpacity:{
-      backgroundColor:'#c7d7f0',
-      padding:20
       
   },
-  numText:{
-      fontSize:30,
-      
-  }
+  
 });
 
 
