@@ -1,21 +1,42 @@
-import React from 'react'
-import {  Modal, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useRef, useState } from 'react'
+import {  Animated, Modal, SafeAreaView, StyleSheet, Switch, Text, TouchableOpacity, View, useAnimatedValue } from 'react-native';
 
 interface Anime{
 
     modalVisible:boolean,
     back:Function
 }
+
+
 function Animation(props:Anime) {
+
+    const value = useRef(new Animated.Value(0)).current;
+    const [enable,setEnable] = useState(false);
+
+    
+    const handleChange = ()=>{
+        
+        changeColor();
+        setEnable(prev=>!prev)
+    };
+ 
+    const changeColor=()=>{
+        Animated.timing(value,{
+            toValue:1000,
+            duration:1000,
+            useNativeDriver:false
+        }).start();
+    }
 
   return (
     <Modal animationType="fade" visible={props.modalVisible} transparent={false}>
         <SafeAreaView style={style.safeAreaView}> 
-        <View style={style.container}>
-        <TouchableOpacity style={style.button2} >
-            <Text style={style.buttonText}>Change Color</Text>
-            </TouchableOpacity>  
-        </View>
+        <Animated.View style={[style.container,{backgroundColor:value.interpolate({
+            inputRange:[0,1000],
+            outputRange:[enable?"#c4a9db":"#765b87",enable?"#765b87":"#c4a9db"]
+        })} ]}>
+            <Switch value={enable} onValueChange={handleChange}/>
+        </Animated.View>
 
         <TouchableOpacity style={style.button} onPress={()=>props.back()}>
             <Text style={style.buttonText}>Back</Text>
@@ -63,3 +84,6 @@ export default Animation;
     },
 
  })
+
+
+
