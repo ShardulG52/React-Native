@@ -1,14 +1,18 @@
 import React, { Component, useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import Calculator from './component/Calculator';
+import ProductList from '../day04Ex01/component/ProductComponent';
+import Cart from '../day04Ex01/component/CartComponent';
 
 
-
-
+//const array = ['1','2','3','4','5','6','7','8','9','+','0','-','*','/','=','back','reset'];
 function App(){
 
 
-  
+  // addProduct = ()=>{
+
+
+  // }
   const [input1,setInput] = useState('');
     const [total,setTotal] = useState<number>(0);
     
@@ -40,6 +44,7 @@ function App(){
             switch(operator){
                 case '+':{
                     setTotal(operand1+operand2); 
+                    
                     break;
                 }
                 case '-':{
@@ -74,7 +79,8 @@ function App(){
         <Text style={style.text}> Total : {total}</Text>
         <Calculator onPress={onPress} />
 
-        
+        {/* <ProductList productList={[]} addProduct={addProduct} removeProduct={removeProduct} />
+        <Cart/> */}
       </View>
     </SafeAreaView>
    )

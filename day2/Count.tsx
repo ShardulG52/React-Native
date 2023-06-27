@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Button, View } from "react-native";
 
+
+
+
 interface CountProps{
 
     count :number,
@@ -10,11 +13,12 @@ interface CountProps{
 }
 
 
+
 function Count(props:CountProps){
 
     
     return (
-        <View>
+        <View >
             <Button title="Increment" onPress={()=>props.increment()}/>
             <Button title="Decrement" onPress={()=>props.decrement()}/>
             <Button title="Reset" onPress={()=>props.reset()}/>

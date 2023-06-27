@@ -17,6 +17,18 @@ const styles = StyleSheet.create({
       fontSize: 30,
       fontWeight: 'bold',
     },
+
+    count:{
+        marginTop: 10,
+      borderWidth: 4,
+      borderColor: '#8c4303',
+      borderRadius: 20,
+      backgroundColor: '#fa9d4b',
+      color: '#20232a',
+      textAlign: 'center',
+      fontSize: 25,
+
+    }
   });
 function Greeting(){
     const [count , setCount] = useState<number>(0);
@@ -35,7 +47,9 @@ function Greeting(){
     return <View >
         <Text style= {styles.title} id="head">Hello! Welcome {name}</Text>
         <Count count={count} increment={increment} decrement={decrement} reset={reset} ></Count>
-        <Text style= {styles.title}>Count : {count}</Text>
+        <View style= {styles.count}>
+            <Text >Count : {count}</Text>
+            </View>
     
     </View>;
 };
