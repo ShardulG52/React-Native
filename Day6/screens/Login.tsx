@@ -82,7 +82,7 @@ const style = StyleSheet.create({
         height:30,
         borderRadius:15,
         position:"absolute",
-        top:520,
+        top:488,
     },
     buttonText:{
         color:'white',
