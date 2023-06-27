@@ -14,7 +14,7 @@ import Login from "./screens/Login";
 
 function App(){
 
-const [authentication,setAuthentication] = useState <boolean>(true);
+const [authentication,setAuthentication] = useState <boolean>(false);
 
 
 

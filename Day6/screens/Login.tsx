@@ -18,10 +18,14 @@ function Login(props:any ){
             <TextInput placeholder="Mobile Number" style={style.textInput}></TextInput>
             </View>
             </View>
-            <TouchableOpacity style={style.button} onPress={()=>props.navigation.navigate("Home")}>
+            <TouchableOpacity style={style.button} >
             <Text style={style.buttonText}>Login</Text>
             </TouchableOpacity>
             </View>
+            <TouchableOpacity style={style.button2} onPress={()=> props.navigation.navigate("Register")}>
+            <Text style={style.buttonText}>Register</Text>
+            </TouchableOpacity>
+            
         </SafeAreaView>
     )
 
@@ -92,10 +96,10 @@ const style = StyleSheet.create({
         backgroundColor:'#4f1d7a',
         alignSelf:'center',
         alignItems:'center',
-        width:'100%',
+        width:'50%',
         height:30,
         borderRadius:15,
-        marginBottom:10
+        marginBottom:30
         
     },
 
