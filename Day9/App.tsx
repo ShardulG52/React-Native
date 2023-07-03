@@ -9,7 +9,9 @@ function App() {
     <Context.Provider value={{name, setName}}>
       <View style={style.view}>
         <View>
-          <Text style={{fontSize: 55}}>My Name is {name}</Text>
+          <Text style={{fontSize: 35, padding: 20, marginBottom: 30}}>
+            My Name is {name}
+          </Text>
         </View>
         <A />
       </View>
