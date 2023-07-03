@@ -30,7 +30,7 @@ function D() {
           <Text style={{alignSelf: 'center', color: 'darkblue'}}>Change </Text>
         </TouchableOpacity>
       </View>
-      <Text style={{fontSize: 20}}>My name is {name}</Text>
+      <Text style={{fontSize: 20, margin: 10}}>My name is {name}</Text>
     </View>
   );
 }
