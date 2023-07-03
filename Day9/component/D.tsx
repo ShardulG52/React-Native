@@ -43,16 +43,18 @@ const style = StyleSheet.create({
     padding: 5,
     margin: 5,
     width: '100%',
+    borderRadius: 10,
   },
   button: {
     alignSelf: 'center',
     padding: 15,
     backgroundColor: 'powderblue',
-    borderRadius: 10,
+    borderRadius: 30,
   },
   view: {
     alignItems: 'center',
     backgroundColor: '#e98477',
     padding: 15,
+    borderRadius: 25,
   },
 });
